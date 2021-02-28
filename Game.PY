@@ -83,6 +83,7 @@ def enemy3_run():
         x3 = 550
         y3 = 0
         canvas.after(10, lambda: enemy3_run())
+#bullet
 
 
 
@@ -92,6 +93,7 @@ canvas.pack(expand=True, fill = 'both')
 # --------Player:
 image = tk.PhotoImage(file = "Image\gun.png")
 my_gun = canvas.create_image(400, 550, image = image)
+bullet = tk.PhotoImage(file = "Image\bullet.png")
 canvas.create_text(720,10,fill="darkblue",text="Score:")
 
 # Call enamy all
