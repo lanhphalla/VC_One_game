@@ -8,13 +8,13 @@ def move_gun_to_left(event):
     if canvas.coords(my_gun)[0] > 50:
         canvas.move(my_gun, -20, 0)
 def move_gun_to_up(event):
-    if canvas.coords(my_gun)[1] < 560 and canvas.coords(my_gun)[1] > 50:
+    if canvas.coords(my_gun)[1] > 50:
         canvas.move(my_gun,0,-20)
 def move_gun_to_down(event):
-    if canvas.coords(my_gun)[1] < 50 and canvas.coords(my_gun)[1] > 550:
+    if canvas.coords(my_gun)[1] >= 50:
         canvas.move(my_gun, 0, 20)
 def bullet_player():
-    global x_gun, y_gun, shoot,enemies
+    global x_gun, y_gun, shoot, my_enemy1
     canvas.moveto(shoot,x_gun,y_gun)
     x_gun += 0
     y_gun += -20
@@ -24,7 +24,7 @@ def bullet_player():
         x_gun = canvas.coords(my_gun)[0]-25
         y_gun = canvas.coords(my_gun)[1]
         canvas.after(10, lambda: bullet_player())
-# gun enemies 1---------------------------------------------------------------------------------------------------------------------------
+
 def bullet_enemies1():
     global my_gun_enemy1, x_enemies1_gun, y_enemies1_gun, enemies
     canvas.moveto(my_gun_enemy1, x_enemies1_gun, y_enemies1_gun)
@@ -71,12 +71,6 @@ def move_enemies():
             canvas.moveto(enemies[index][0],x_monster,0)
         canvas.move(enemies[index][0],enemies[index][1],enemies[index][2])
     canvas.after(100,move_enemies)
-    # delete enemies -----------------------------------------------------------------------------------------------------------------------------------
-# def delete_enemies():
-#     global enemies, shoot
-#     for i in range(len(enemies)):
-#         if canvas.coords(shoot)[1] == canvas.coords(enemies)[1]:
-#             canvas.delete(enemies[i])
 # GRAPHICS -----------------------------------------------------------------------
 root = tk.Tk()
 root.geometry("800x600")
@@ -116,12 +110,10 @@ bullet_player()
 bullet_enemies1()
 bullet_enemies2()
 bullet_enemies3()
-# delete_enemies()
 root.bind("<Right>",move_gun_to_right)
 root.bind("<Left>",move_gun_to_left)
 root.bind("<Up>",move_gun_to_up)
 root.bind("<Down>",move_gun_to_down)
-# root.bind("<k>", shoot_bullet)
 canvas.pack(expand=True, fill = 'both')
 root.resizable(False, False)
 root.mainloop()
